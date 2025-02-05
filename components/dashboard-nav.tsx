@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar"
 import { LayoutDashboard, Map, Bell, UserCircle, Box } from "lucide-react"
-import type React from "react" // Added import for React
+import type React from "react"
 
 interface NavItem {
   title: string
@@ -47,8 +47,12 @@ export function DashboardNav() {
     <SidebarMenu>
       {navItems.map((item) => (
         <SidebarMenuItem key={item.href}>
-          <SidebarMenuButton asChild isActive={pathname === item.href}>
-            <Link href={item.href}>
+          <SidebarMenuButton
+            asChild
+            isActive={pathname === item.href}
+            className={pathname === item.href ? "bg-green-500 text-white hover:bg-green-600 w-full" : "w-full"}
+          >
+            <Link href={item.href} className="flex items-center w-full">
               <item.icon className="mr-2 h-4 w-4" />
               {item.title}
             </Link>
