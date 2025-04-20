@@ -1,8 +1,9 @@
-import * as React from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { AlertTriangle, CheckCircle, Info, MapPin, Thermometer, Droplet, Wind } from "lucide-react"
+import { AlertTriangle, CheckCircle, Info, MapPin, Thermometer, Droplet, Wind, Map } from "lucide-react"
+import Link from "next/link"
+import Image from "next/image"
 
 interface Notification {
   id: number
@@ -72,6 +73,21 @@ export function NotificationDetailsPanel({ notification }: NotificationDetailsPa
         </CardContent>
       </Card>
 
+      <div className="h-[200px] bg-muted rounded-md flex items-center justify-center relative overflow-hidden">
+        <div className="relative w-full h-full">
+          <Image src="/sri-lanka-map.png" alt="Sri Lanka Map" layout="fill" objectFit="contain" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Link
+              href="/real-time-tracking"
+              className="flex flex-col items-center text-blue-500 hover:underline z-10 bg-white/80 p-2 rounded"
+            >
+              <Map className="h-8 w-8 mb-2" />
+              <span>View on Sri Lanka Map</span>
+            </Link>
+          </div>
+        </div>
+      </div>
+
       <Card>
         <CardHeader>
           <CardTitle>Past Alerts</CardTitle>
@@ -103,4 +119,3 @@ export function NotificationDetailsPanel({ notification }: NotificationDetailsPa
     </div>
   )
 }
-

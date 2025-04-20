@@ -1,18 +1,21 @@
-import * as React from "react"
+"use client"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Thermometer, Droplet, Wind } from "lucide-react"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { MapPin } from "lucide-react"
 
 interface Container {
   id: string
   status: string
   location: { lat: number; lng: number }
+  locationName: string
   temperature: number
   humidity: number
   ventilation: string
   transporter: string
   lastUpdate: string
+  lastMaintenance: string
 }
 
 interface ContainerListProps {
@@ -27,52 +30,51 @@ export function ContainerList({ containers, selectedContainer, onSelectContainer
       <CardHeader>
         <CardTitle>Container List</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-0 sm:p-6">
         <ScrollArea className="h-[400px]">
-          <div className="space-y-4">
-            {containers.map((container) => (
-              <div
-                key={container.id}
-                className={`p-4 rounded-lg cursor-pointer transition-colors ${
-                  selectedContainer?.id === container.id ? "bg-muted" : "hover:bg-muted/50"
-                }`}
-                onClick={() => onSelectContainer(container)}
-              >
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="font-semibold">{container.id}</h3>
-                  <Badge
-                    variant={
-                      container.status === "Available"
-                        ? "success"
-                        : container.status === "In Transit"
-                          ? "default"
-                          : "destructive"
-                    }
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Container ID</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead className="hidden md:table-cell">Location</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {containers.map((container) => (
+                  <TableRow
+                    key={container.id}
+                    className={`cursor-pointer ${selectedContainer?.id === container.id ? "bg-muted" : "hover:bg-muted/50"}`}
+                    onClick={() => onSelectContainer(container)}
                   >
-                    {container.status}
-                  </Badge>
-                </div>
-                <p className="text-sm text-muted-foreground mb-2">{container.transporter}</p>
-                <div className="grid grid-cols-3 gap-2 text-sm">
-                  <div className="flex items-center">
-                    <Thermometer className="mr-1 h-4 w-4" />
-                    {container.temperature}°C
-                  </div>
-                  <div className="flex items-center">
-                    <Droplet className="mr-1 h-4 w-4" />
-                    {container.humidity}%
-                  </div>
-                  <div className="flex items-center">
-                    <Wind className="mr-1 h-4 w-4" />
-                    {container.ventilation}
-                  </div>
-                </div>
-              </div>
-            ))}
+                    <TableCell className="font-medium">{container.id}</TableCell>
+                    <TableCell>
+                      <Badge
+                        variant={
+                          container.status === "Available"
+                            ? "success"
+                            : container.status === "In Transit"
+                              ? "default"
+                              : "destructive"
+                        }
+                      >
+                        {container.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="hidden md:table-cell">
+                      <div className="flex items-center">
+                        <MapPin className="mr-2 h-4 w-4 text-muted-foreground" />
+                        <span>{container.locationName}</span>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </div>
         </ScrollArea>
       </CardContent>
     </Card>
   )
 }
-

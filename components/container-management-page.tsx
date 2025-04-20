@@ -19,7 +19,8 @@ const containers = [
     id: "CONT001",
     status: "Available",
     transporter: "Unassigned",
-    location: "Warehouse A, Los Angeles",
+    location: { lat: 40, lng: 45 }, // Colombo area
+    locationName: "Warehouse A, Colombo",
     lastMaintenance: "2023-06-15",
     temperature: 22,
     humidity: 45,
@@ -29,7 +30,8 @@ const containers = [
     id: "CONT002",
     status: "In Transit",
     transporter: "John Doe Logistics",
-    location: "Interstate 5, California",
+    location: { lat: 60, lng: 70 }, // Jaffna area
+    locationName: "Highway A9, Jaffna",
     lastMaintenance: "2023-05-20",
     temperature: 24,
     humidity: 50,
@@ -39,13 +41,24 @@ const containers = [
     id: "CONT003",
     status: "Maintenance Required",
     transporter: "Smith Trucking",
-    location: "Depot B, New York",
+    location: { lat: 75, lng: 30 }, // Trincomalee area
+    locationName: "Depot B, Trincomalee",
     lastMaintenance: "2023-03-10",
     temperature: 26,
     humidity: 60,
     ventilation: "Faulty",
   },
-  // Add more sample data as needed
+  {
+    id: "CONT004",
+    status: "In Transit",
+    transporter: "Fast Freight Ltd",
+    location: { lat: 85, lng: 55 }, // Batticaloa area
+    locationName: "Port Road, Batticaloa",
+    lastMaintenance: "2023-04-05",
+    temperature: 23,
+    humidity: 55,
+    ventilation: "Normal",
+  },
 ]
 
 export function ContainerManagementPage() {
@@ -62,7 +75,7 @@ export function ContainerManagementPage() {
   })
 
   return (
-    <div className="container mx-auto p-6 space-y-6">
+    <div className="space-y-6">
       <header className="flex flex-col sm:flex-row justify-between items-center mb-6">
         <h1 className="text-3xl font-bold mb-4 sm:mb-0">Container Management</h1>
         <Button>
@@ -175,22 +188,30 @@ export function ContainerManagementPage() {
                       </Badge>
                     </TableCell>
                     <TableCell>{container.transporter}</TableCell>
-                    <TableCell className="flex items-center">
-                      <MapPin className="mr-2 h-4 w-4 text-muted-foreground" />
-                      {container.location}
+                    <TableCell>
+                      <div className="flex items-center">
+                        <MapPin className="mr-2 h-4 w-4 text-muted-foreground" />
+                        <span>{container.locationName}</span>
+                      </div>
                     </TableCell>
                     <TableCell>{container.lastMaintenance}</TableCell>
-                    <TableCell className="flex items-center">
-                      <Thermometer className="mr-2 h-4 w-4 text-muted-foreground" />
-                      {container.temperature}°C
+                    <TableCell>
+                      <div className="flex items-center">
+                        <Thermometer className="mr-2 h-4 w-4 text-muted-foreground" />
+                        <span>{container.temperature}°C</span>
+                      </div>
                     </TableCell>
-                    <TableCell className="flex items-center">
-                      <Droplet className="mr-2 h-4 w-4 text-muted-foreground" />
-                      {container.humidity}%
+                    <TableCell>
+                      <div className="flex items-center">
+                        <Droplet className="mr-2 h-4 w-4 text-muted-foreground" />
+                        <span>{container.humidity}%</span>
+                      </div>
                     </TableCell>
-                    <TableCell className="flex items-center">
-                      <Wind className="mr-2 h-4 w-4 text-muted-foreground" />
-                      {container.ventilation}
+                    <TableCell>
+                      <div className="flex items-center">
+                        <Wind className="mr-2 h-4 w-4 text-muted-foreground" />
+                        <span>{container.ventilation}</span>
+                      </div>
                     </TableCell>
                     <TableCell>
                       <Dialog>
@@ -217,4 +238,3 @@ export function ContainerManagementPage() {
     </div>
   )
 }
-

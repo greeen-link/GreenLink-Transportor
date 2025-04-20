@@ -59,48 +59,46 @@ export function NotificationsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-        <h1 className="text-3xl font-bold mb-4 sm:mb-0">Notifications & Alerts</h1>
-        <div className="w-full sm:w-auto">
+      <h1 className="text-3xl font-bold tracking-tight">Notifications</h1>
+
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
+        <div className="relative flex-grow w-full">
+          <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          <Input
+            type="text"
+            placeholder="Search notifications..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10 w-full"
+          />
+        </div>
+        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+          <Select value={typeFilter} onValueChange={setTypeFilter}>
+            <SelectTrigger className="w-full sm:w-[150px]">
+              <SelectValue placeholder="Type" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="All">All</SelectItem>
+              <SelectItem value="Critical">Critical</SelectItem>
+              <SelectItem value="Warning">Warning</SelectItem>
+              <SelectItem value="Info">Informational</SelectItem>
+            </SelectContent>
+          </Select>
+          <Select value={dateFilter} onValueChange={setDateFilter}>
+            <SelectTrigger className="w-full sm:w-[150px]">
+              <SelectValue placeholder="Date" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="All">All</SelectItem>
+              <SelectItem value="Today">Today</SelectItem>
+              <SelectItem value="PastWeek">Past Week</SelectItem>
+              <SelectItem value="Custom">Custom</SelectItem>
+            </SelectContent>
+          </Select>
           <Button className="w-full sm:w-auto">
             <CheckCircle className="mr-2 h-4 w-4" /> Mark All as Read
           </Button>
         </div>
-      </div>
-
-      <div className="flex flex-col sm:flex-row gap-4 mb-6">
-        <div className="relative flex-grow w-full sm:w-64">
-          <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400" />
-          <Input
-            type="text"
-            placeholder="Search notifications"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-8 w-full"
-          />
-        </div>
-        <Select value={typeFilter} onValueChange={setTypeFilter}>
-          <SelectTrigger className="w-full sm:w-40">
-            <SelectValue placeholder="Filter by Type" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="All">All</SelectItem>
-            <SelectItem value="Critical">Critical</SelectItem>
-            <SelectItem value="Warning">Warning</SelectItem>
-            <SelectItem value="Info">Informational</SelectItem>
-          </SelectContent>
-        </Select>
-        <Select value={dateFilter} onValueChange={setDateFilter}>
-          <SelectTrigger className="w-full sm:w-40">
-            <SelectValue placeholder="Filter by Date" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="All">All</SelectItem>
-            <SelectItem value="Today">Today</SelectItem>
-            <SelectItem value="PastWeek">Past Week</SelectItem>
-            <SelectItem value="Custom">Custom</SelectItem>
-          </SelectContent>
-        </Select>
       </div>
 
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
@@ -167,4 +165,3 @@ export function NotificationsPage() {
     </div>
   )
 }
-

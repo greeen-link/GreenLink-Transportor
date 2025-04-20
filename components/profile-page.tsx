@@ -9,6 +9,7 @@ import { ProfileHeader } from "@/components/profile-header"
 export function ProfilePage() {
   return (
     <div className="space-y-6">
+      <h1 className="text-3xl font-bold tracking-tight">Profile Settings</h1>
       <ProfileHeader />
       <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
         <UserInformationSection />
@@ -22,4 +23,3 @@ export function ProfilePage() {
     </div>
   )
 }
-

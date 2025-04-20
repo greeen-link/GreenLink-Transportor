@@ -46,4 +46,3 @@ export function RealTimeTracking({ className }: React.HTMLAttributes<HTMLDivElem
     </div>
   )
 }
-

@@ -1,8 +1,7 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/page": "app/page.js",
-  "/notifications/page": "app/notifications/page.js",
-  "/profile/page": "app/profile/page.js",
+  "/real-time-tracking/page": "app/real-time-tracking/page.js",
   "/container-management/page": "app/container-management/page.js",
-  "/real-time-tracking/page": "app/real-time-tracking/page.js"
+  "/notifications/page": "app/notifications/page.js",
+  "/profile/page": "app/profile/page.js"
 }

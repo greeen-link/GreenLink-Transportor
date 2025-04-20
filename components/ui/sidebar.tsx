@@ -50,4 +50,3 @@ const SidebarMenuItem = React.forwardRef<HTMLLIElement, React.ComponentProps<"li
 SidebarMenuItem.displayName = "SidebarMenuItem"
 
 export { Sidebar, SidebarMenu, SidebarMenuItem, SidebarMenuButton }
-

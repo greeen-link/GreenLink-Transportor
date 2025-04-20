@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { MapPin, Thermometer, Droplet, Wind } from "lucide-react"
+import { MapPin, Thermometer, Droplet, Wind, Map } from "lucide-react"
+import Link from "next/link"
+import Image from "next/image"
 
 interface ContainerDetailModalProps {
   container: {
@@ -75,6 +77,13 @@ export function ContainerDetailModal({ container }: ContainerDetailModalProps) {
         </Card>
       </div>
 
+      <Link
+        href="/real-time-tracking"
+        className="flex items-center justify-center w-full p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+      >
+        <Map className="mr-2 h-4 w-4" /> View on Sri Lanka Map
+      </Link>
+
       <Card>
         <CardHeader>
           <CardTitle>Ventilation Status</CardTitle>
@@ -102,7 +111,20 @@ export function ContainerDetailModal({ container }: ContainerDetailModalProps) {
         </CardContent>
       </Card>
 
-      <div className="h-[200px] bg-muted rounded-lg flex items-center justify-center">Map Placeholder</div>
+      <div className="h-[200px] bg-muted rounded-lg flex items-center justify-center relative overflow-hidden">
+        <div className="relative w-full h-full">
+          <Image src="/sri-lanka-map.png" alt="Sri Lanka Map" layout="fill" objectFit="contain" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Link
+              href="/real-time-tracking"
+              className="flex flex-col items-center text-blue-500 hover:underline z-10 bg-white/80 p-2 rounded"
+            >
+              <Map className="h-8 w-8 mb-2" />
+              <span>Click to view on Sri Lanka Map</span>
+            </Link>
+          </div>
+        </div>
+      </div>
 
       <CardFooter className="flex justify-between">
         <Button variant="outline">Edit Details</Button>
@@ -112,4 +134,3 @@ export function ContainerDetailModal({ container }: ContainerDetailModalProps) {
     </div>
   )
 }
-

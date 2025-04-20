@@ -1,8 +1,9 @@
-import * as React from "react"
+"use client"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { AlertTriangle, CheckCircle, Info } from "lucide-react"
+import { AlertTriangle, CheckCircle, Info, Map } from "lucide-react"
+import Link from "next/link"
 
 interface Notification {
   id: number
@@ -51,6 +52,15 @@ export function NotificationList({ notifications, onSelectNotification }: Notifi
               </div>
               <p className="text-sm text-muted-foreground">{notification.message}</p>
               <p className="text-xs text-muted-foreground">{new Date(notification.timestamp).toLocaleString()}</p>
+              <div className="mt-2">
+                <Link
+                  href="/real-time-tracking"
+                  className="flex items-center text-xs text-blue-500 hover:underline"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Map className="mr-1 h-3 w-3" /> View on Sri Lanka Map
+                </Link>
+              </div>
             </div>
             <div className="flex flex-col space-y-2">
               <Button size="sm" variant="outline">
@@ -66,4 +76,3 @@ export function NotificationList({ notifications, onSelectNotification }: Notifi
     </ScrollArea>
   )
 }
-

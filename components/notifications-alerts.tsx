@@ -66,4 +66,3 @@ export function NotificationsAlerts({ className }: React.HTMLAttributes<HTMLDivE
     </Card>
   )
 }
-

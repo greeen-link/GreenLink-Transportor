@@ -16,41 +16,49 @@ const containers = [
     id: "CONT001",
     status: "In Transit",
     location: { lat: 40, lng: 45 }, // Roughly Colombo
+    locationName: "Colombo Port",
     temperature: 22,
     humidity: 45,
     ventilation: "Normal",
     transporter: "ABC Logistics",
     lastUpdate: "2023-07-01T15:30:00Z",
+    lastMaintenance: "2023-06-15",
   },
   {
     id: "CONT002",
     status: "Available",
     location: { lat: 60, lng: 70 }, // Roughly Jaffna
+    locationName: "Jaffna Warehouse",
     temperature: 20,
     humidity: 50,
     ventilation: "Normal",
     transporter: "XYZ Transport",
     lastUpdate: "2023-07-01T16:00:00Z",
+    lastMaintenance: "2023-05-20",
   },
   {
     id: "CONT003",
     status: "Maintenance Required",
     location: { lat: 75, lng: 30 }, // Roughly Trincomalee
+    locationName: "Trincomalee Depot",
     temperature: 28,
     humidity: 60,
     ventilation: "Faulty",
     transporter: "123 Shipping",
     lastUpdate: "2023-07-01T14:45:00Z",
+    lastMaintenance: "2023-03-10",
   },
   {
     id: "CONT004",
     status: "In Transit",
     location: { lat: 85, lng: 55 }, // Roughly Batticaloa
+    locationName: "Batticaloa Highway",
     temperature: 24,
     humidity: 55,
     ventilation: "Normal",
     transporter: "Fast Freight Ltd",
     lastUpdate: "2023-07-01T17:15:00Z",
+    lastMaintenance: "2023-04-05",
   },
 ]
 
@@ -75,7 +83,7 @@ export function RealTimeTrackingPage() {
   }
 
   return (
-    <div className="container mx-auto p-6 space-y-6">
+    <div className="space-y-6">
       <header className="flex flex-col sm:flex-row justify-between items-center mb-6">
         <h1 className="text-3xl font-bold mb-4 sm:mb-0">Real-Time Tracking</h1>
         <div className="flex space-x-2">
@@ -140,4 +148,3 @@ export function RealTimeTrackingPage() {
     </div>
   )
 }
-

@@ -34,11 +34,10 @@ export function ProfileHeader() {
         </label>
       </div>
       <div>
-        <h2 className="text-2xl font-bold">Sarath Perera</h2>
-        <p className="text-muted-foreground">sarathperera@gmail.com.com</p>
+        <h2 className="text-2xl font-bold">John Doe</h2>
+        <p className="text-muted-foreground">john.doe@example.com</p>
         <Badge className="mt-1">Verified Transporter</Badge>
       </div>
     </div>
   )
 }
-
